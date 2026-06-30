@@ -12,4 +12,6 @@ def secondHighest(self, s: str) -> int:
                     slargest = num 
         return slargest
 
+## Remove duplicates from sorted array
+
     
