@@ -1,4 +1,6 @@
 # Remove Duplicates from Sorted Array
+from ast import List
+
 from numpy import diff
 
 
@@ -16,6 +18,17 @@ nums = [0,0,1,1,1,2,2,3,3,4]
 k = removeDuplictates(nums)
 print(nums,k)
 
+# Remove Elemet 27
+def removeElement(self, nums: List[int], val: int) -> int:
+        n = len(nums)
+        slow = 0
+        for fast in range(n):
+            if nums[fast] != val:
+                nums[slow],nums[fast] = nums[fast],nums[slow]
+                slow+=1
+        return slow
+
+# Remove Duplicates from Sorted Array II
 
 
 # 1796. Second Largest Digit in a String
