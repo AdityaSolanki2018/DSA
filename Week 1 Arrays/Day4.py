@@ -1,3 +1,22 @@
+# Problem: 1 Move zeroes to the end of the array
+
+# Problem: 2 Sort Colours
+def sortColors(nums: list) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        red = 0
+        n = len(nums)
+        for i in range(n):
+            if nums[i] == 0:
+                nums[red],nums[i] =nums[i],nums[red]
+                red+=1
+        for i in range(n):
+            if nums[i] == 1:
+                nums[red],nums[i] =nums[i],nums[red]
+                red+=1
+
+                
 # Removing duplicates from sorted array (in-place)
 # 2 pointer approach
 
