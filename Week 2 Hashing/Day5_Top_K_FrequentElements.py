@@ -23,15 +23,61 @@ Follow up: Your algorithm's time complexity must be better than O(n log n), wher
 '''
 
 from collections import defaultdict
+
+# using heapq
 import heapq
+# def topKFrequent(nums: list[int], k: int) -> list[int]:
+#     d = defaultdict(int)
+#     for num in nums:
+#         d[num]+=1
+#     heap = []
+#     for key,val in d.items():
+#         if len(heap) < k or val > heap[0][0]:
+#             heapq.heappush(heap,[val,key])
+#         if len(heap) > k:
+#             heapq.heappop(heap)
+#     return [i[1] for i in heap]
+
+# Using Bucket Sort
+from collections import Counter
+
 def topKFrequent(nums: list[int], k: int) -> list[int]:
-    d = defaultdict(int)
-    for num in nums:
-        d[num]+=1
-    heap = []
-    for key,val in d.items():
-        if len(heap) < k or val > heap[0][0]:
-            heapq.heappush(heap,[val,key])
-        if len(heap) > k:
-            heapq.heappop(heap)
-    return [i[1] for i in heap]
+    counts = Counter(nums)
+    buckets = [[] for _ in range(len(nums) + 1)]
+    
+    for num, freq in counts.items():
+        buckets[freq].append(num)
+        
+    ans = []
+    for freq in range(len(nums), 0, -1):
+        for num in buckets[freq]:
+            ans.append(num)
+            if len(ans) == k:
+                return ans
+    return ans
+
+
+# def topKFrequent(nums: list[int], k: int) -> list[int]:
+#         d = defaultdict(int)
+#         for num in nums:
+#             d[num]+=1
+#         heap = []
+
+#         arr = [[0]]*(len(nums)+1)
+#         print(arr)
+#         for key,val in d.items():
+#             print(val)
+#             if arr[val] != [0]:
+#                 arr[val].append(key)
+#             else:arr[val] = [key]
+    
+#         print(arr)
+#         ans = []
+#         i = len(arr)-1
+#         while(i>=0 & len(ans)<k):
+#             if arr[i] != [0]:
+#                 ans.append(arr[i])
+#             i-=1
+#         return ans
+
+print(topKFrequent([1], 1))
